@@ -1,2 +1,3 @@
 # py-js
-py-js is a JavaScript interpreter for microcontrollers. It is designed for IoT devices.
+py-js is a JavaScript interpreter for microcontrollers. It is designed for IoT devices with little RAM
+and Flash.
