@@ -1,15 +1,18 @@
 CC=g++
-CFLAGS=-c -g -Wall -rdynamic
+CFLAGS=-c -g -Wall -rdynamic -D_DEBUG
 LDFLAGS=-g -rdynamic
 
 SOURCES=  \
 PyJS.cpp \
-pool_allocator.cpp \
-PyJS_Threading.cpp
+PyJS_Functions.cpp \
+PyJS_MathFunctions.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
 
-all: Script
+all: run_tests Script
+
+run_tests: run_tests.o $(OBJECTS)
+	$(CC) $(LDFLAGS) run_tests.o $(OBJECTS) -o $@
 
 Script: Script.o $(OBJECTS)
 	$(CC) $(LDFLAGS) Script.o $(OBJECTS) -o $@
@@ -18,4 +21,4 @@ Script: Script.o $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm Script Script.o $(OBJECTS)
+	rm -f run_tests Script run_tests.o Script.o $(OBJECTS)
